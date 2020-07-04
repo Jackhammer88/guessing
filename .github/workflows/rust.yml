@@ -1,0 +1,26 @@
+name: Rust
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: cargo build --verbose
+    - name: Installing cargo-deb
+      run: cargo install cargo-deb
+    - name: Creating deb package
+      run: cargo deb
+    - name: Publishing
+      run: curl -T target/debian/hello_world_0.1.0_amd64.deb -umadfisht3:${{ secrets.API_KEY }} https://api.bintray.com/content/madfisht3/guessing/guessing/1/hello_world_0.1.0_amd64.deb
