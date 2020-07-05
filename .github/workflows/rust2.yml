@@ -19,4 +19,37 @@ jobs:
     - name: Build
       run: cargo build --release
     - name: Create a zip archive
-      run: dir
+      run: dir target/release
+      
+    # Pack to ZIP
+    - name: Packing output
+      run: Compress-Archive -Path .\target\release -DestinationPath app.zip
+          
+    # Upload artifacts
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: app.zip
+        path: app.zip
+        
+    # Create release
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          tag_name: tagv1.1
+          release_name: Release v1.1 ${{ github.ref }}
+          draft: false
+          prerelease: false
+          
+    # Upload binaries to release
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: app.zip
+        asset_name: app.zip
+        tag: tagv1.1
+        overwrite: true
