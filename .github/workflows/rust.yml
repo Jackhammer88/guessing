@@ -20,7 +20,7 @@ jobs:
       run: cargo build --verbose
     - name: Installing cargo-deb
       run: cargo install cargo-deb
-    - name: Creating deb package
-      run: cargo deb
+    - name: Creating a deb package
+      run: cargo-deb
     - name: Publishing
       run: curl -T target/debian/guessing_0.1.1_amd64.deb -umadfisht3:${{ secrets.API_KEY }} https://api.bintray.com/content/madfisht3/guessing/guessing/1/guessing_0.1.1_amd64.deb
