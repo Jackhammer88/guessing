@@ -1,4 +1,4 @@
-name: Rust
+name: Rust-windows
 
 on:
   push:
@@ -39,8 +39,8 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          tag_name: tagv1.1
-          release_name: Release v1.1 ${{ github.ref }}
+          tag_name: tagv1.1-win
+          release_name: Release v1.1-win ${{ github.ref }}
           draft: false
           prerelease: false
           
@@ -51,5 +51,5 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: app.zip
         asset_name: app.zip
-        tag: tagv1.1
+        tag: tagv1.1-win
         overwrite: true
