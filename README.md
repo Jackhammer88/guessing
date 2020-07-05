@@ -1,3 +1,3 @@
 # guessing
-![](https://github.com/actions/hello-world/workflows/Greet%20Everyone/badge.svg)
-https://dl.bintray.com/madfisht3/guessing
+![Rust-windows](https://github.com/madfisht3/guessing/workflows/Rust-windows/badge.svg)
+![Rust-linux](https://github.com/madfisht3/guessing/workflows/Rust-linux/badge.svg)
